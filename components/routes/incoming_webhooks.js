@@ -29,4 +29,24 @@ module.exports = function(webserver, controller) {
         // }
     });
 
+    webserver.get('/', function(req, res) {
+        // if (req.query['hub.mode'] == 'subscribe') {
+        //     if (req.query['hub.verify_token'] == controller.config.verify_token) {
+        //         res.send(req.query['hub.challenge']);
+        //     } else {
+                res.send('OK');
+            // }
+        // }
+    });
+
+    webserver.get('/favicon.ico', function(req, res) {
+        // if (req.query['hub.mode'] == 'subscribe') {
+        //     if (req.query['hub.verify_token'] == controller.config.verify_token) {
+        //         res.send(req.query['hub.challenge']);
+        //     } else {
+                res.send('OK');
+            // }
+        // }
+    });
+
 }
