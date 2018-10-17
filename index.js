@@ -3,38 +3,22 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-express()
-    .use(express.static(path.join(__dirname, 'public')))
-    .set('views', path.join(__dirname, 'views'))
-    .set('view engine', 'ejs')
-    .get('/', (req, res) => res.send('OK'))
-    .get('/facebook/receive', (req, res) => {
-        res.send(req.query['hub.challenge']);
-    })
-    .post('/facebook/receive', (req, res) => {
-        res.status(200);
-
-        var bot = controller.spawn({});
-
-        controller.handleWebhookPayload(req, res, bot);
-    })
-    .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-       ______     ______     ______   __  __     __     ______
-      /\  == \   /\  __ \   /\__  _\ /\ \/ /    /\ \   /\__  _\
-      \ \  __<   \ \ \/\ \  \/_/\ \/ \ \  _"-.  \ \ \  \/_/\ \/
-       \ \_____\  \ \_____\    \ \_\  \ \_\ \_\  \ \_\    \ \_\
-        \/_____/   \/_____/     \/_/   \/_/\/_/   \/_/     \/_/
+           ______     ______     ______   __  __     __     ______
+          /\  == \   /\  __ \   /\__  _\ /\ \/ /    /\ \   /\__  _\
+          \ \  __<   \ \ \/\ \  \/_/\ \/ \ \  _"-.  \ \ \  \/_/\ \/
+           \ \_____\  \ \_____\    \ \_\  \ \_\ \_\  \ \_\    \ \_\
+            \/_____/   \/_____/     \/_/   \/_/\/_/   \/_/     \/_/
 
 
 This is a sample Facebook bot built with Botkit.
 
 # RUN THE BOT:
-Follow the instructions here to set up your Facebook app and page:
--> https://developers.facebook.com/docs/messenger-platform/implementation
-Run your bot from the command line:
-page_token=<MY PAGE TOKEN> verify_token=<MY_VERIFY_TOKEN> node bot.js
+  Follow the instructions here to set up your Facebook app and page:
+    -> https://developers.facebook.com/docs/messenger-platform/implementation
+  Run your bot from the command line:
+    page_token=<MY PAGE TOKEN> verify_token=<MY_VERIFY_TOKEN> node bot.js
 
 
 
@@ -87,8 +71,8 @@ require(__dirname + '/components/plugin_glitch.js')(controller);
 require('botkit-studio-metrics')(controller);
 
 var normalizedPath = require("path").join(__dirname, "skills");
-require("fs").readdirSync(normalizedPath).forEach(function (file) {
-    require("./skills/" + file)(controller);
+require("fs").readdirSync(normalizedPath).forEach(function(file) {
+  require("./skills/" + file)(controller);
 });
 
 
@@ -99,9 +83,9 @@ require("fs").readdirSync(normalizedPath).forEach(function (file) {
 // You can tie into the execution of the script using the functions
 // controller.studio.before, controller.studio.after and controller.studio.validate
 if (process.env.studio_token) {
-    controller.on('message_received,facebook_postback', function (bot, message) {
+    controller.on('message_received,facebook_postback', function(bot, message) {
         if (message.text) {
-            controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function (convo) {
+            controller.studio.runTrigger(bot, message.text, message.user, message.channel, message).then(function(convo) {
                 if (!convo) {
                     // no trigger was matched
                     // If you want your bot to respond to every message,
@@ -113,7 +97,7 @@ if (process.env.studio_token) {
                     // use controller.studio.before('script') to set variables specific to a script
                     convo.setVar('current_time', new Date());
                 }
-            }).catch(function (err) {
+            }).catch(function(err) {
                 if (err) {
                     bot.reply(message, 'I experienced an error with a request to Botkit Studio: ' + err);
                     debug('Botkit Studio: ', err);
@@ -136,3 +120,20 @@ function usage_tip() {
     console.log('Get a Botkit Studio token here: https://studio.botkit.ai/')
     console.log('~~~~~~~~~~');
 }
+
+express()
+    .use(express.static(path.join(__dirname, 'public')))
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs')
+    .get('/', (req, res) => res.send('OK'))
+    .get('/facebook/receive', (req, res) => {
+        res.send(req.query['hub.challenge']);
+    })
+    .post('/facebook/receive', (req, res) => {
+        res.status(200);
+
+        var bot = controller.spawn({});
+
+        controller.handleWebhookPayload(req, res, bot);
+    })
+    .listen(PORT, () => console.log(`Listening on ${PORT}`))
