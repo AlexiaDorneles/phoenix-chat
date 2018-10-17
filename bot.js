@@ -17,9 +17,6 @@ This is a sample Facebook bot built with Botkit.
 
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-// const express = require('express')
-// const path = require('path')
-// const PORT = process.env.PORT || 5000
 var env = require('node-env-file');
 env(__dirname + '/.env');
 
@@ -117,14 +114,3 @@ function usage_tip() {
     console.log('Get a Botkit Studio token here: https://studio.botkit.ai/')
     console.log('~~~~~~~~~~');
 }
-
-
-// express()
-//     .use(express.static(path.join(__dirname, 'public')))
-//     .set('views', path.join(__dirname, 'views'))
-//     .set('view engine', 'ejs')
-//     .get('/', (req, res) => res.send('OK'))
-//     .get('/facebook/receive', (req, res) => {
-//         res.send(req.query['hub.challenge']);
-//     })
-//     .listen(PORT, () => console.log(`Listening on ${PORT}`))
