@@ -1,9 +1,9 @@
 var debug = require('debug')('botkit:incoming_webhooks');
 
-module.exports = function(webserver, controller) {
+module.exports = function (webserver, controller) {
 
     debug('Configured POST /facebook/receive url for receiving events');
-    webserver.post('/facebook/receive', function(req, res) {
+    webserver.post('/facebook/receive', function (req, res) {
 
         // NOTE: we should enforce the token check here
 
@@ -19,33 +19,33 @@ module.exports = function(webserver, controller) {
     });
 
     debug('Configured GET /facebook/receive url for verification');
-    webserver.get('/facebook/receive', function(req, res) {
+    webserver.get('/facebook/receive', function (req, res) {
+        if (req.query['hub.mode'] == 'subscribe') {
+            if (req.query['hub.verify_token'] == controller.config.verify_token) {
+                res.send(req.query['hub.challenge']);
+            } else {
+                res.send('OK');
+            }
+        }
+    });
+
+    webserver.get('/', function (req, res) {
         // if (req.query['hub.mode'] == 'subscribe') {
         //     if (req.query['hub.verify_token'] == controller.config.verify_token) {
         //         res.send(req.query['hub.challenge']);
         //     } else {
-                res.send('OK');
-            // }
+        res.send('OK');
+        // }
         // }
     });
 
-    webserver.get('/', function(req, res) {
+    webserver.get('/favicon.ico', function (req, res) {
         // if (req.query['hub.mode'] == 'subscribe') {
         //     if (req.query['hub.verify_token'] == controller.config.verify_token) {
         //         res.send(req.query['hub.challenge']);
         //     } else {
-                res.send('OK');
-            // }
+        res.send('OK');
         // }
-    });
-
-    webserver.get('/favicon.ico', function(req, res) {
-        // if (req.query['hub.mode'] == 'subscribe') {
-        //     if (req.query['hub.verify_token'] == controller.config.verify_token) {
-        //         res.send(req.query['hub.challenge']);
-        //     } else {
-                res.send('OK');
-            // }
         // }
     });
 
