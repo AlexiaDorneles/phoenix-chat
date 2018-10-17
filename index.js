@@ -3,8 +3,8 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-// var env = require('node-env-file');
-// env('./.env');
+var env = require('node-env-file');
+env('./.env');
 
 // var Botkit = require('botkit');
 // var debug = require('debug')('botkit:main');
