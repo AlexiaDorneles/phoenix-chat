@@ -96,11 +96,4 @@ express()
     .get('/facebook/receive', (req, res) => {
         res.send(req.query['hub.challenge']);
     })
-    .post('/facebook/receive', (req, res) => {
-        res.status(200);
-
-        var bot = controller.spawn({});
-
-        controller.handleWebhookPayload(req, res, bot);
-    })
     .listen(PORT, () => console.log(`Listening on ${PORT}`))
