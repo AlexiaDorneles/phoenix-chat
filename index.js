@@ -3,41 +3,21 @@ const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
 
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-           ______     ______     ______   __  __     __     ______
-          /\  == \   /\  __ \   /\__  _\ /\ \/ /    /\ \   /\__  _\
-          \ \  __<   \ \ \/\ \  \/_/\ \/ \ \  _"-.  \ \ \  \/_/\ \/
-           \ \_____\  \ \_____\    \ \_\  \ \_\ \_\  \ \_\    \ \_\
-            \/_____/   \/_____/     \/_/   \/_/\/_/   \/_/     \/_/
-
-
-This is a sample Facebook bot built with Botkit.
-
-# RUN THE BOT:
-  Follow the instructions here to set up your Facebook app and page:
-    -> https://developers.facebook.com/docs/messenger-platform/implementation
-  Run your bot from the command line:
-    page_token=<MY PAGE TOKEN> verify_token=<MY_VERIFY_TOKEN> node bot.js
-
-
-
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 var env = require('node-env-file');
-env(__dirname + '/.env');
+env('./.env');
 
 
-if (!process.env.page_token) {
-    console.log('Error: Specify a Facebook page_token in environment.');
-    usage_tip();
-    process.exit(1);
-}
+// if (!process.env.page_token) {
+//     console.log('Error: Specify a Facebook page_token in environment.');
+//     usage_tip();
+//     process.exit(1);
+// }
 
-if (!process.env.verify_token) {
-    console.log('Error: Specify a Facebook verify_token in environment.');
-    usage_tip();
-    process.exit(1);
-}
+// if (!process.env.verify_token) {
+//     console.log('Error: Specify a Facebook verify_token in environment.');
+//     usage_tip();
+//     process.exit(1);
+// }
 
 var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
