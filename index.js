@@ -4,7 +4,7 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 
 var env = require('node-env-file');
-env('./.env');
+env(_dirname + '/.env');
 
 // var Botkit = require('botkit');
 // var debug = require('debug')('botkit:main');
