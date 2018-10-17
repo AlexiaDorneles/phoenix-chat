@@ -23,6 +23,7 @@ var Botkit = require('botkit');
 var debug = require('debug')('botkit:main');
 
 // Create the Botkit controller, which controls all instances of the bot.
+console.log(process.env)
 var controller = Botkit.facebookbot({
     // debug: true,
     verify_token: process.env.verify_token,
@@ -85,16 +86,6 @@ controller.on('message_received,facebook_postback', function (bot, message) {
         });
     }
 });
-
-function usage_tip() {
-    console.log('~~~~~~~~~~');
-    console.log('Botkit Studio Starter Kit');
-    console.log('Execute your bot application like this:');
-    console.log('page_token=<MY PAGE TOKEN> verify_token=<MY VERIFY TOKEN> studio_token=<MY BOTKIT STUDIO TOKEN> node bot.js');
-    console.log('Get Facebook token here: https://developers.facebook.com/docs/messenger-platform/implementation')
-    console.log('Get a Botkit Studio token here: https://studio.botkit.ai/')
-    console.log('~~~~~~~~~~');
-}
 
 express()
     .use(express.static(path.join(__dirname, 'public')))
