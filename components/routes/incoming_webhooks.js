@@ -9,7 +9,7 @@ module.exports = function(webserver, controller) {
 
         // respond to Slack that the webhook has been received.
         res.status(200);
-        res.send('ok');
+        res.send(1755155669);
 
         var bot = controller.spawn({});
 
