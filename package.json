@@ -1,0 +1,17 @@
+{
+  "name": "phoenix-chat",
+  "version": "1.0.0",
+  "author": "alexia.dorneles",
+  "description": "Chat component of PhoenixProject",
+  "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
+  "scripts": {
+    "start": "firebase serve --only functions:dialogflowFirebaseFulfillment",
+    "deploy": "firebase deploy --only functions:dialogflowFirebaseFulfillment"
+  },
+  "license": "ISC",
+  "dependencies": {
+  }
+}
