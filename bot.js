@@ -46,7 +46,7 @@ var controller = Botkit.facebookbot({
 })
 
 // Set up an Express-powered webserver to expose oauth and webhook endpoints
-// const webserver = require(__dirname + '/components/express_webserver.js')(controller)
+ const webserver = require(__dirname + '/components/express_webserver.js')(controller)
 
 // Tell Facebook to start sending events to this application
 require(__dirname + '/components/subscribe_events.js')(controller)
